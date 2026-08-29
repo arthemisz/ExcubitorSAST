@@ -9,7 +9,7 @@ A high-performance, dark-mode glassmorphic frontend UI MVP for a **Static Applic
 
 ---
 
-## 🌟 Key Features
+##  Key Features
 
 - **Dark-Mode Glassmorphic Aesthetic**: Implemented with deep dark backgrounds (`bg-gray-950`), frosted glass cards (`backdrop-blur-md`, `bg-white/5` or `bg-gray-800/50`), and subtle borders (`border-white/10`).
 - **Global Navigation & Sidebar Shell**:
@@ -29,7 +29,7 @@ A high-performance, dark-mode glassmorphic frontend UI MVP for a **Static Applic
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Technology | Role | Details |
 | :--- | :--- | :--- |
@@ -41,7 +41,7 @@ A high-performance, dark-mode glassmorphic frontend UI MVP for a **Static Applic
 
 ---
 
-## 🎨 Design System & Color Palette
+## Design System & Color Palette
 
 The interface follows a cybersecurity-focused dark-mode glassmorphic theme:
 
@@ -65,7 +65,7 @@ The interface follows a cybersecurity-focused dark-mode glassmorphic theme:
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```text
 ├── app/
@@ -88,7 +88,7 @@ The interface follows a cybersecurity-focused dark-mode glassmorphic theme:
 
 ---
 
-## 📊 Mock Data Schema
+##  Mock Data Schema
 
 The dashboard uses client-side mock state to enable immediate interactivity without requiring an active backend or database:
 
@@ -152,7 +152,7 @@ export const MOCK_REPOSITORIES: Repository[] = [
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Prerequisites
 
@@ -180,7 +180,7 @@ export const MOCK_REPOSITORIES: Repository[] = [
 
 ---
 
-## 🧩 Component Architecture Overview
+##  Component Architecture Overview
 
 ### 1. Root Layout (`/app/layout.tsx`)
 - Hosts the dark backdrop (`bg-gray-950 text-gray-100 min-h-screen flex`).
@@ -199,7 +199,7 @@ export const MOCK_REPOSITORIES: Repository[] = [
 
 ---
 
-## 🗺️ Roadmap & Next Iterations
+##  Roadmap & Next Iterations
 
 - [ ] **Scan Detail Modal / Drawer**: Deep-dive view showing line-by-line code snippets with vulnerability callouts (CWE / OWASP Top 10).
 - [ ] **Interactive "New Scan" Flow**: Client modal to trigger mock scans with progress animations.
