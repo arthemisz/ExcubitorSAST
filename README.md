@@ -1,5 +1,4 @@
-# Sentinel SAST — Modern Security Dashboard UI
-
+# Sentinel SAST 
 [![Next.js](https://img.shields.io/badge/Next.js-14%2B-black?style=flat-square&logo=next.js)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-18%2B-blue?style=flat-square&logo=react)](https://reactjs.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4%2B-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
