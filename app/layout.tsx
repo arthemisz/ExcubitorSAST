@@ -1,29 +1,26 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Sidebar from "@/components/Sidebar";
-
 export const metadata: Metadata = {
-  title: "Sentinel SAST — Security Dashboard",
-  description: "Modern static application security testing platform UI",
+  title: "Excubitor SAST",
+  description: "Security Testing Engine",
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>){
   return (
     <html lang="en" className="dark">
-      <body className="bg-gray-950 text-gray-100 min-h-screen flex antialiased selection:bg-indigo-500 selection:text-white">
-        {/* Left Minimalist Sidebar */}
-        <Sidebar />
+      <body className="bg-black text-white min-h-screen relative overflow-x-hidden antialiased selection:bg-yellow-500/30 selection:text-white">
+        
+        {/* Subtle Edge-to-Edge Wireframe Grid Pattern */}
+        <div className="fixed inset-0 bg-wireframe-grid pointer-events-none z-0" />
 
-        {/* Main Content Area */}
-        <div className="flex-1 flex flex-col min-w-0 overflow-y-auto">
-          <main className="flex-1 p-6 md:p-8 max-w-7xl w-full mx-auto">
-            {children}
-          </main>
-        </div>
+        {/* Screen-wide CSS Noise / Grain Overlay */}
+        <div className="fixed inset-0 bg-grain-noise opacity-[0.04] pointer-events-none z-50 mix-blend-screen" />
+
+        {children}
       </body>
     </html>
   );

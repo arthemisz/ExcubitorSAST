@@ -1,79 +1,100 @@
-import React from "react";
-import MetricCard from "@/components/MetricCard";
-import RepoTable from "@/components/RepoTable";
-import { MOCK_REPOSITORIES, MOCK_HERO_STATS } from "@/data/mockData";
-import { 
-  FolderGit2, 
-  ShieldAlert, 
-  Binary, 
-  ShieldCheck, 
-  RefreshCw, 
-  Activity,
-  Search,
-  Filter
-} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
-export default function DashboardPage() {
+export default function LandingPage() {
   return (
-    <div className="space-y-8 animate-in fade-in duration-300">
-      {/* Top Banner & Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-white/10">
-        <div>
-          <div className="flex items-center gap-2 mb-1">
-            <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-xs font-mono uppercase tracking-widest text-indigo-400">
-              Continuous AST Scanner
-            </span>
-          </div>
-          <h1 className="text-3xl font-extrabold text-white tracking-tight">
-            Security Overview
-          </h1>
-          <p className="text-sm text-gray-400 mt-1">
-            Real-time static code vulnerability metrics and repository scan health.
-          </p>
+    <div className="relative min-h-screen flex flex-col font-mono text-gray-300">
+      
+      {/* 1. Ambient Atmospheric Radial Gradients (Purple & Yellow) */}
+      <div className="absolute top-0 right-0 w-[700px] h-[700px] rounded-full bg-purple-900/40 blur-[130px] -translate-y-1/4 translate-x-1/4 pointer-events-none z-0" />
+      <div className="absolute bottom-0 left-0 w-[800px] h-[800px] rounded-full bg-yellow-700/20 blur-[140px] translate-y-1/3 -translate-x-1/4 pointer-events-none z-0" />
+
+      {/* 2. Top Navigation */}
+      <nav className="relative z-20 flex items-center justify-between px-10 py-8 text-sm">
+        <div className="flex items-center gap-2 text-white font-sans font-bold text-xl tracking-wide">
+          <div className="w-6 h-6 rounded bg-gradient-to-tr from-yellow-500 to-purple-600"></div>
+          Excubitor
+        </div>
+        <div className="hidden md:flex gap-12 tracking-wider">
+          <Link href="./dashboard" className="hover:text-white transition-colors">Products</Link>
+          <Link href="./capabilities" className="hover:text-white transition-colors">Capabilities</Link>
+          <Link href="./resources" className="hover:text-white transition-colors">Resources</Link>
+          <Link href="./partners" className="hover:text-white transition-colors">Partners</Link>
+        </div>
+        <button className="px-6 py-2 rounded-full border border-white/20 text-white hover:bg-white/5 transition-colors tracking-widest">
+          Contact Us
+        </button>
+      </nav>
+
+      {/* 3. Central Hero Section */}
+      <main className="relative z-10 flex-1 flex flex-col items-center justify-center w-full max-w-7xl mx-auto mt-4">
+        
+        {/* Floating Accent Text */}
+        <div className="absolute top-0 flex w-full justify-between px-10 text-xs tracking-widest text-gray-400">
+          <span className="ml-auto ">Safeguarding Excubitor .</span>
         </div>
 
-        {/* Action / Status Pill */}
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl backdrop-blur-md bg-white/5 border border-white/10 text-xs font-mono text-gray-300">
-            <Activity className="w-4 h-4 text-emerald-400" />
-            <span>Ruleset: OWASP Top 10 + CWE</span>
+        {/* The Massive Background Text */}
+        <h1 className="absolute z-0 text-[14vw] leading-none font-sans font-medium text-white tracking-tight w-full text-center select-none uppercase">
+          EXCUBITOR
+        </h1>
+
+        <div className="relative z-10 w-[550px] h-[450px] flex items-center justify-center mt-12 drop-shadow-[0_20px_50px_rgba(168,85,247,0.15)]">
+          <Image 
+            src="/lock.png" 
+            alt="Excubitor Security Lock" 
+            fill
+            className="object-contain"
+            priority
+          />
+        </div>
+
+        {/* Call to Action Buttons */}
+        <div className="relative z-20 mt-12 flex items-center gap-8 text-sm tracking-widest">
+          <button className="hover:text-white transition-colors">
+            Request Info
+          </button>
+          {/* This button now correctly routes to your separated dashboard component */}
+          <Link 
+            href="/dashboard"
+            className="px-8 py-3 rounded-full bg-gradient-to-r from-grey-500 to-yellow-500 text-black font-bold hover:opacity-90 transition-opacity">
+            Get Started Now
+          </Link>
+        </div>
+      </main>
+
+      {/* 4. Footer Stats & Logos */}
+      <footer className="relative z-20 flex items-end justify-between px-10 pb-10 mt-auto">
+        <div className="flex items-center gap-8 text-sm">
+          <div>
+            <div className="text-2xl font-sans font-medium text-white mb-1">818</div>
+            <div className="tracking-widest text-gray-400">Clients</div>
+          </div>
+          <div className="w-px h-10 bg-white/20"></div>
+          <div>
+            <div className="text-2xl font-sans font-medium text-white mb-1">70+</div>
+            <div className="tracking-widest text-gray-400">Country</div>
+          </div>
+          <div className="w-px h-10 bg-white/20"></div>
+          <div className="text-xs text-gray-400 max-w-[200px] leading-relaxed tracking-wide">
+            We're dedicated<br/> to safeguarding<br/> Excubitor assets
           </div>
         </div>
-      </div>
 
-      {/* Hero Stats: Three Glassmorphic Metric Cards */}
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <MetricCard
-          title="Total Repos"
-          value={MOCK_HERO_STATS.totalRepos}
-          subtitle="4 active repositories onboarded"
-          icon={FolderGit2}
-          accentColor="indigo"
-          trend={{ text: "+1 this week", isPositive: true }}
-        />
-        <MetricCard
-          title="Critical Open"
-          value={MOCK_HERO_STATS.criticalOpen}
-          subtitle="Requires immediate developer remediation"
-          icon={ShieldAlert}
-          accentColor="red"
-          trend={{ text: "3 unpatched", isDanger: true }}
-        />
-        <MetricCard
-          title="Lines Analyzed"
-          value={MOCK_HERO_STATS.linesAnalyzed}
-          subtitle="Across JavaScript, TypeScript & Terraform"
-          icon={Binary}
-          accentColor="emerald"
-          trend={{ text: "99.8% coverage", isPositive: true }}
-        />
-      </section>
+        {/* Mock Client Logos (Excubitor themed) */}
+        <div className="flex gap-6 opacity-60">
+          <div className="font-bold font-sans flex items-center gap-1">
+            Excubitor <span className="text-xl text-yellow-500">✿</span>
+          </div>
+          <div className="font-bold font-sans italic tracking-tighter text-purple-400">
+            excubitor
+          </div>
+          <div className="font-bold font-sans flex items-center gap-1">
+            <span className="text-xl">❖</span> Excubitor
+          </div>
+        </div>
+      </footer>
 
-      {/* Repositories Data Table */}
-      <section className="space-y-4">
-        <RepoTable repositories={MOCK_REPOSITORIES} />
-      </section>
     </div>
   );
 }

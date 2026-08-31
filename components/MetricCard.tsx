@@ -11,7 +11,6 @@ interface MetricCardProps {
     isPositive?: boolean;
     isDanger?: boolean;
   };
-  accentColor?: "indigo" | "red" | "emerald" | "amber";
 }
 
 export default function MetricCard({
@@ -20,68 +19,49 @@ export default function MetricCard({
   subtitle,
   icon: Icon,
   trend,
-  accentColor = "indigo",
 }: MetricCardProps) {
-  const accentStyles = {
-    indigo: {
-      iconBg: "bg-indigo-500/10 text-indigo-400 border-indigo-500/20",
-      glow: "from-indigo-500/5 to-transparent",
-    },
-    red: {
-      iconBg: "bg-red-500/10 text-red-400 border-red-500/20",
-      glow: "from-red-500/5 to-transparent",
-    },
-    emerald: {
-      iconBg: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
-      glow: "from-emerald-500/5 to-transparent",
-    },
-    amber: {
-      iconBg: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-      glow: "from-amber-500/5 to-transparent",
-    },
-  }[accentColor];
-
   return (
-    <div className="relative group overflow-hidden rounded-2xl p-5 backdrop-blur-md bg-white/5 border border-white/10 hover:border-white/20 transition-all duration-300 shadow-xl shadow-black/40">
-      {/* Subtle ambient gradient */}
-      <div
-        className={`absolute -top-12 -right-12 w-32 h-32 bg-gradient-to-br ${accentStyles.glow} rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500`}
-      />
-
+    <div className="relative rounded-3xl backdrop-blur-xl bg-white/[0.02] border border-white/10 hover:border-white/20 p-6 transition-all duration-300">
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1">
+          {/* Small label in monospace with wide tracking */}
+          <p className="font-mono text-[11px] uppercase tracking-widest text-gray-400 mb-2">
             {title}
           </p>
-          <h3 className="text-3xl font-extrabold text-white tracking-tight">
+          {/* Numerical stat in monospace with wide tracking */}
+          <h3 className="font-mono text-3xl md:text-4xl font-bold text-white tracking-widest">
             {value}
           </h3>
           {subtitle && (
-            <p className="text-xs text-gray-400 mt-1 font-medium">{subtitle}</p>
+            <p className="font-mono text-xs text-gray-400 tracking-wider mt-2">
+              {subtitle}
+            </p>
           )}
         </div>
 
-        <div
-          className={`p-3 rounded-xl border ${accentStyles.iconBg} backdrop-blur-sm shadow-inner`}
-        >
-          <Icon className="w-6 h-6" />
+        {/* Minimalist wireframe circular icon badge */}
+        <div className="p-3 rounded-full border border-white/15 bg-white/[0.03] text-gray-200">
+          <Icon className="w-5 h-5" />
         </div>
       </div>
 
       {trend && (
-        <div className="mt-4 pt-3 border-t border-white/5 flex items-center gap-2">
+        <div className="mt-5 pt-4 border-t border-white/10 flex items-center gap-2.5">
+          {/* Perfectly pill-shaped chip */}
           <span
-            className={`text-xs px-2 py-0.5 rounded-full font-medium border ${
+            className={`rounded-full px-3 py-0.5 font-mono text-[10px] tracking-widest uppercase border ${
               trend.isDanger
-                ? "bg-red-500/10 text-red-400 border-red-500/20"
+                ? "border-red-500/30 text-red-300 bg-red-500/5"
                 : trend.isPositive
-                ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
-                : "bg-gray-500/10 text-gray-400 border-gray-500/20"
+                ? "border-emerald-500/30 text-emerald-300 bg-emerald-500/5"
+                : "border-white/15 text-gray-300 bg-white/[0.02]"
             }`}
           >
             {trend.text}
           </span>
-          <span className="text-[11px] text-gray-500">vs previous run</span>
+          <span className="font-mono text-[10px] text-gray-400 tracking-widest uppercase">
+            Run comparison
+          </span>
         </div>
       )}
     </div>

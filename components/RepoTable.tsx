@@ -4,9 +4,8 @@ import { Repository } from "@/data/mockData";
 import { 
   GitBranch, 
   Clock, 
-  CheckCircle2, 
-  XCircle, 
-  ExternalLink,
+  Check, 
+  X, 
   ChevronRight,
   ShieldCheck,
   ShieldAlert
@@ -18,18 +17,20 @@ interface RepoTableProps {
 
 export default function RepoTable({ repositories }: RepoTableProps) {
   return (
-    <div className="rounded-2xl backdrop-blur-md bg-white/5 border border-white/10 overflow-hidden shadow-2xl shadow-black/50">
+    <div className="rounded-3xl backdrop-blur-xl bg-white/[0.02] border border-white/10 overflow-hidden">
       {/* Table Header Controls */}
-      <div className="p-5 border-b border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="p-6 border-b border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-lg font-bold text-white flex items-center gap-2">
-            <span>Repositories Overview</span>
-            <span className="text-xs font-mono font-normal px-2 py-0.5 rounded-full bg-white/10 text-gray-300">
-              {repositories.length} total
+          <div className="flex items-center gap-3">
+            <h2 className="font-sans font-bold text-white text-xl tracking-tight">
+              Monitored Repositories
+            </h2>
+            <span className="rounded-full border border-white/20 px-3 py-0.5 font-mono text-[10px] tracking-widest uppercase text-gray-300">
+              {repositories.length} Active
             </span>
-          </h2>
-          <p className="text-xs text-gray-400 mt-0.5">
-            Monitored repositories analyzed by static security AST engines
+          </div>
+          <p className="font-mono text-xs text-gray-400 tracking-wider mt-1">
+            Continuous static AST engine inspection &amp; vulnerability index
           </p>
         </div>
       </div>
@@ -38,15 +39,15 @@ export default function RepoTable({ repositories }: RepoTableProps) {
       <div className="overflow-x-auto">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="border-b border-white/5 bg-white/[0.02] text-[11px] font-semibold uppercase tracking-wider text-gray-400">
-              <th className="py-3.5 px-5">Repository Name</th>
-              <th className="py-3.5 px-5">Last Scan Time</th>
-              <th className="py-3.5 px-5">Status</th>
-              <th className="py-3.5 px-5">Severity Findings Breakdown</th>
-              <th className="py-3.5 px-5 text-right">Actions</th>
+            <tr className="border-b border-white/10 font-mono text-[10px] uppercase tracking-widest text-gray-400">
+              <th className="py-4 px-6">Repository</th>
+              <th className="py-4 px-6">Last Scan</th>
+              <th className="py-4 px-6">Status</th>
+              <th className="py-4 px-6">Severity Breakdown</th>
+              <th className="py-4 px-6 text-right">Action</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-white/5 text-sm">
+          <tbody className="divide-y divide-white/5">
             {repositories.map((repo) => {
               const isPass = repo.status === "Pass";
               const { critical, high, medium, low } = repo.findingsCount;
@@ -55,26 +56,26 @@ export default function RepoTable({ repositories }: RepoTableProps) {
               return (
                 <tr
                   key={repo.id}
-                  className="group hover:bg-white/[0.04] transition-colors duration-150"
+                  className="group hover:bg-white/[0.02] transition-colors duration-150"
                 >
                   {/* Repo Name & Branch */}
-                  <td className="py-4 px-5">
-                    <div className="flex items-center gap-3">
-                      <div className={`p-2 rounded-lg border ${
+                  <td className="py-4 px-6">
+                    <div className="flex items-center gap-3.5">
+                      <div className={`p-2 rounded-full border ${
                         isPass 
-                          ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-400" 
-                          : "bg-red-500/10 border-red-500/20 text-red-400"
+                          ? "border-emerald-500/30 text-emerald-300 bg-emerald-500/5" 
+                          : "border-red-500/30 text-red-300 bg-red-500/5"
                       }`}>
-                        {isPass ? <ShieldCheck className="w-4 h-4" /> : <ShieldAlert className="w-4 h-4" />}
+                        {isPass ? <ShieldCheck className="w-3.5 h-3.5" /> : <ShieldAlert className="w-3.5 h-3.5" />}
                       </div>
                       <div>
                         <Link 
                           href={`/repo/${repo.id}/finding/${repo.topFindingId}`}
-                          className="font-medium text-white group-hover:text-indigo-400 transition-colors inline-flex items-center gap-1.5"
+                          className="font-mono text-sm tracking-wide text-white group-hover:text-emerald-300 transition-colors inline-flex items-center gap-1.5"
                         >
                           <span>{repo.name}</span>
                         </Link>
-                        <div className="flex items-center gap-2 mt-0.5 text-xs text-gray-400 font-mono">
+                        <div className="flex items-center gap-2 mt-1 text-[11px] font-mono tracking-widest text-gray-400 uppercase">
                           <span className="flex items-center gap-1">
                             <GitBranch className="w-3 h-3 text-gray-500" />
                             {repo.defaultBranch}
@@ -87,75 +88,75 @@ export default function RepoTable({ repositories }: RepoTableProps) {
                   </td>
 
                   {/* Last Scan Time */}
-                  <td className="py-4 px-5 whitespace-nowrap">
-                    <div className="flex items-center gap-2 text-xs text-gray-300 font-mono">
-                      <Clock className="w-3.5 h-3.5 text-gray-500" />
+                  <td className="py-4 px-6 whitespace-nowrap">
+                    <div className="flex items-center gap-2 font-mono text-xs tracking-widest text-gray-300">
+                      <Clock className="w-3 h-3 text-gray-500" />
                       <span>{repo.lastScanTime}</span>
                     </div>
                   </td>
 
-                  {/* Status (Pass / Fail) */}
-                  <td className="py-4 px-5 whitespace-nowrap">
+                  {/* Status (Pass / Fail pill) */}
+                  <td className="py-4 px-6 whitespace-nowrap">
                     <span
-                      className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold border ${
+                      className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-mono text-[10px] tracking-widest uppercase border ${
                         isPass
-                          ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20 shadow-sm shadow-emerald-500/10"
-                          : "bg-red-500/10 text-red-400 border-red-500/20 shadow-sm shadow-red-500/10"
+                          ? "border-emerald-500/30 text-emerald-300 bg-emerald-500/5"
+                          : "border-red-500/30 text-red-300 bg-red-500/5"
                       }`}
                     >
                       {isPass ? (
                         <>
-                          <CheckCircle2 className="w-3.5 h-3.5" />
-                          <span>PASS</span>
+                          <Check className="w-3 h-3 text-emerald-400" />
+                          <span>Pass</span>
                         </>
                       ) : (
                         <>
-                          <XCircle className="w-3.5 h-3.5" />
-                          <span>FAIL</span>
+                          <X className="w-3 h-3 text-red-400" />
+                          <span>Fail</span>
                         </>
                       )}
                     </span>
                   </td>
 
-                  {/* Severity Badge Count */}
-                  <td className="py-4 px-5">
-                    <div className="flex flex-wrap items-center gap-1.5">
+                  {/* Severity Badge Count (All pill-shaped) */}
+                  <td className="py-4 px-6">
+                    <div className="flex flex-wrap items-center gap-2">
                       {critical > 0 && (
-                        <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold font-mono bg-red-500/15 text-red-400 border border-red-500/30">
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full font-mono text-[10px] tracking-widest uppercase border border-red-500/30 text-red-300 bg-red-500/5">
                           {critical} Critical
                         </span>
                       )}
                       {high > 0 && (
-                        <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold font-mono bg-orange-500/15 text-orange-400 border border-orange-500/30">
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full font-mono text-[10px] tracking-widest uppercase border border-orange-500/30 text-orange-300 bg-orange-500/5">
                           {high} High
                         </span>
                       )}
                       {medium > 0 && (
-                        <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-medium font-mono bg-amber-500/15 text-amber-300 border border-amber-500/30">
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full font-mono text-[10px] tracking-widest uppercase border border-amber-500/30 text-amber-300 bg-amber-500/5">
                           {medium} Medium
                         </span>
                       )}
                       {low > 0 && (
-                        <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-medium font-mono bg-blue-500/15 text-blue-300 border border-blue-500/30">
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full font-mono text-[10px] tracking-widest uppercase border border-blue-500/30 text-blue-300 bg-blue-500/5">
                           {low} Low
                         </span>
                       )}
                       {!hasFindings && (
-                        <span className="text-xs text-gray-500 italic">
-                          No issues detected
+                        <span className="font-mono text-xs text-gray-400 tracking-widest uppercase">
+                          Clean
                         </span>
                       )}
                     </div>
                   </td>
 
-                  {/* Action Link */}
-                  <td className="py-4 px-5 text-right whitespace-nowrap">
+                  {/* Secondary Action Pill Button */}
+                  <td className="py-4 px-6 text-right whitespace-nowrap">
                     <Link
                       href={`/repo/${repo.id}/finding/${repo.topFindingId}`}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 hover:bg-indigo-600/30 text-gray-300 hover:text-white border border-white/10 hover:border-indigo-500/40 transition-all duration-200"
+                      className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-transparent text-white font-mono tracking-widest text-xs uppercase px-4 py-1.5 hover:bg-white/5 hover:border-white/40 transition-all duration-200"
                     >
-                      <span>View Findings</span>
-                      <ChevronRight className="w-3.5 h-3.5" />
+                      <span>View Finding</span>
+                      <ChevronRight className="w-3 h-3 text-gray-400" />
                     </Link>
                   </td>
                 </tr>
