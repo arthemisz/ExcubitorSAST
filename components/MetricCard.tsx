@@ -6,6 +6,8 @@ interface MetricCardProps {
   value: string | number;
   subtitle?: string;
   icon: LucideIcon;
+  accentColor?: string;
+  accentcolor?: string;
   trend?: {
     text: string;
     isPositive?: boolean;
@@ -18,10 +20,31 @@ export default function MetricCard({
   value,
   subtitle,
   icon: Icon,
+  accentColor,
+  accentcolor,
   trend,
 }: MetricCardProps) {
+  const color = accentColor || accentcolor || "indigo";
+  
+  // Dynamic glow border accent
+  const getAccentBorder = () => {
+    switch (color) {
+      case "yellow":
+        return "hover:border-yellow-500/40";
+      case "purple":
+        return "hover:border-purple-500/40";
+      case "red":
+        return "hover:border-red-500/40";
+      case "emerald":
+        return "hover:border-emerald-500/40";
+      case "indigo":
+      default:
+        return "hover:border-indigo-500/40";
+    }
+  };
+
   return (
-    <div className="relative rounded-3xl backdrop-blur-xl bg-white/[0.02] border border-white/10 hover:border-white/20 p-6 transition-all duration-300">
+    <div className={`relative rounded-3xl backdrop-blur-xl bg-white/[0.02] border border-white/10 ${getAccentBorder()} p-6 transition-all duration-300`}>
       <div className="flex items-start justify-between">
         <div>
           {/* Small label in monospace with wide tracking */}

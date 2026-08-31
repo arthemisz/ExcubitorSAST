@@ -17,7 +17,7 @@ export default function LandingPage() {
         </div>
         <div className="hidden md:flex gap-12 tracking-wider">
           <Link href="./dashboard" className="hover:text-white transition-colors">Products</Link>
-          <Link href="./capabilities" className="hover:text-white transition-colors">Capabilities</Link>
+          <Link href="./scans" className="hover:text-white transition-colors">Scans</Link>
           <Link href="./resources" className="hover:text-white transition-colors">Resources</Link>
           <Link href="./partners" className="hover:text-white transition-colors">Partners</Link>
         </div>
