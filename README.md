@@ -10,7 +10,6 @@ A high-performance, dark-mode glassmorphic frontend UI MVP for a **Static Applic
 
 ##  Key Features
 
-- **Dark-Mode Glassmorphic Aesthetic**: Implemented with deep dark backgrounds (`bg-gray-950`), frosted glass cards (`backdrop-blur-md`, `bg-white/5` or `bg-gray-800/50`), and subtle borders (`border-white/10`).
 - **Global Navigation & Sidebar Shell**:
   - Brand identity with modern security logo placeholder.
   - Prominent **"New Scan"** trigger button with hover and active glow states.
