@@ -84,57 +84,6 @@ The interface follows a cybersecurity-focused dark-mode glassmorphic theme:
 └── package.json
 ```
 
----
-
-#
-
-##  Getting Started
-
-### Prerequisites
-
-- **Node.js**: v18.17+ or v20+
-- **npm**, **pnpm**, or **yarn**
-
-### Installation
-
-1. Clone or navigate to the project directory:
-   ```bash
-   cd proj
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Run the development server:
-   ```bash
-   npm run dev
-   ```
-
-4. Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
-
----
-
-##  Component Architecture Overview
-
-### 1. Root Layout (`/app/layout.tsx`)
-- Hosts the dark backdrop (`bg-gray-950 text-gray-100 min-h-screen flex`).
-- Embeds the persistent **Sidebar** navigation component on the left.
-- Provides the main content viewport with fluid spacing and custom scrollbars.
-
-### 2. Main Dashboard (`/app/page.tsx`)
-- **Page Header**: Title, description, and workspace selector / quick filter.
-- **Hero Stats Grid**:
-  - `Total Repos`: Dynamic count computed from mock array.
-  - `Critical Open Findings`: Aggregated count of unresolved critical severity alerts.
-  - `Lines Analyzed`: Total formatted volume of scanned source lines.
-- **Repositories Table**:
-  - Filter and search bar.
-  - Tabular list rendering repository metadata, scan timestamps, pass/fail status pills, and breakdown badges.
-
----
-
 ##  Roadmap & Next Iterations
 
 - [ ] **Scan Detail Modal / Drawer**: Deep-dive view showing line-by-line code snippets with vulnerability callouts (CWE / OWASP Top 10).
