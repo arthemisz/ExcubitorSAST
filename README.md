@@ -1,5 +1,4 @@
-# Sentinel SAST — Modern Security Dashboard UI
-
+# Sentinel SAST 
 [![Next.js](https://img.shields.io/badge/Next.js-14%2B-black?style=flat-square&logo=next.js)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-18%2B-blue?style=flat-square&logo=react)](https://reactjs.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4%2B-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
@@ -11,7 +10,6 @@ A high-performance, dark-mode glassmorphic frontend UI MVP for a **Static Applic
 
 ##  Key Features
 
-- **Dark-Mode Glassmorphic Aesthetic**: Implemented with deep dark backgrounds (`bg-gray-950`), frosted glass cards (`backdrop-blur-md`, `bg-white/5` or `bg-gray-800/50`), and subtle borders (`border-white/10`).
 - **Global Navigation & Sidebar Shell**:
   - Brand identity with modern security logo placeholder.
   - Prominent **"New Scan"** trigger button with hover and active glow states.
@@ -85,119 +83,6 @@ The interface follows a cybersecurity-focused dark-mode glassmorphic theme:
 ├── tsconfig.json           # TypeScript configuration
 └── package.json
 ```
-
----
-
-##  Mock Data Schema
-
-The dashboard uses client-side mock state to enable immediate interactivity without requiring an active backend or database:
-
-```typescript
-export interface SeverityCount {
-  critical: number;
-  high: number;
-  medium: number;
-  low: number;
-}
-
-export interface Repository {
-  id: string;
-  name: string;
-  defaultBranch: string;
-  lastScanTime: string;
-  status: 'passed' | 'failed';
-  findings: SeverityCount;
-  linesOfCode: number;
-}
-
-export const MOCK_REPOSITORIES: Repository[] = [
-  {
-    id: "repo-1",
-    name: "auth-service-api",
-    defaultBranch: "main",
-    lastScanTime: "12 minutes ago",
-    status: "failed",
-    findings: { critical: 2, high: 4, medium: 5, low: 1 },
-    linesOfCode: 48200
-  },
-  {
-    id: "repo-2",
-    name: "payment-gateway",
-    defaultBranch: "master",
-    lastScanTime: "1 hour ago",
-    status: "failed",
-    findings: { critical: 1, high: 0, medium: 3, low: 8 },
-    linesOfCode: 124500
-  },
-  {
-    id: "repo-3",
-    name: "customer-portal-web",
-    defaultBranch: "develop",
-    lastScanTime: "3 hours ago",
-    status: "passed",
-    findings: { critical: 0, high: 0, medium: 1, low: 4 },
-    linesOfCode: 87100
-  },
-  {
-    id: "repo-4",
-    name: "infra-terraform-modules",
-    defaultBranch: "main",
-    lastScanTime: "Yesterday",
-    status: "passed",
-    findings: { critical: 0, high: 0, medium: 0, low: 2 },
-    linesOfCode: 16400
-  }
-];
-```
-
----
-
-##  Getting Started
-
-### Prerequisites
-
-- **Node.js**: v18.17+ or v20+
-- **npm**, **pnpm**, or **yarn**
-
-### Installation
-
-1. Clone or navigate to the project directory:
-   ```bash
-   cd proj
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Run the development server:
-   ```bash
-   npm run dev
-   ```
-
-4. Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
-
----
-
-##  Component Architecture Overview
-
-### 1. Root Layout (`/app/layout.tsx`)
-- Hosts the dark backdrop (`bg-gray-950 text-gray-100 min-h-screen flex`).
-- Embeds the persistent **Sidebar** navigation component on the left.
-- Provides the main content viewport with fluid spacing and custom scrollbars.
-
-### 2. Main Dashboard (`/app/page.tsx`)
-- **Page Header**: Title, description, and workspace selector / quick filter.
-- **Hero Stats Grid**:
-  - `Total Repos`: Dynamic count computed from mock array.
-  - `Critical Open Findings`: Aggregated count of unresolved critical severity alerts.
-  - `Lines Analyzed`: Total formatted volume of scanned source lines.
-- **Repositories Table**:
-  - Filter and search bar.
-  - Tabular list rendering repository metadata, scan timestamps, pass/fail status pills, and breakdown badges.
-
----
 
 ##  Roadmap & Next Iterations
 
