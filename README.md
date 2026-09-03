@@ -39,17 +39,6 @@ A high-performance, dark-mode glassmorphic frontend UI MVP for a **Static Applic
 
 ---
 
-## Design System & Color Palette
-
-The interface follows a cybersecurity-focused dark-mode glassmorphic theme:
-
-```css
-/* Core Styling Rules */
---bg-primary: #030712;      /* bg-gray-950 */
---panel-bg: rgba(255, 255, 255, 0.05); /* bg-white/5 or bg-gray-800/50 */
---panel-border: rgba(255, 255, 255, 0.1); /* border-white/10 */
---panel-blur: blur(12px);   /* backdrop-blur-md */
-```
 
 ### Severity Badge Color Scale
 
